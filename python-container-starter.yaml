@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: python-helloworld
-        image: srashidmrgacr.azurecr.io/python-container-starter:v1
+        image: srashidmrgacr.azurecr.io/python-container-starter-env:v1.01
         ports:
         - containerPort: 5858
         resources:
@@ -30,6 +30,12 @@ spec:
             cpu: 250m
           limits:
             cpu: 500m
+        env:
+          - name: SECRET_MESSAGE
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: message
 ---
 apiVersion: v1
 kind: Service
